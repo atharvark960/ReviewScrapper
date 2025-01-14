@@ -24,7 +24,7 @@ export function chunkContent(content, contextWindow) {
         throw new Error("Invalid arguments. 'content' must be a string and 'contextWindow' must be a number.");
     }
 
-    const tokens = content.split(/\s+/); // Tokenize the content by splitting on whitespace.
+    const tokens = content.split(/\s+/);
     const chunks = [];
 
     for (let i = 0; i < tokens.length; i += contextWindow) {
@@ -35,6 +35,20 @@ export function chunkContent(content, contextWindow) {
     return chunks;
 }
 
+export function subChunkContent(chunks, subChunkSize) {
+    return chunks.map(chunk => {
+        const subChunks = [];
+        let start = 0;
+
+        while (start < chunk.length) {
+            const end = Math.min(start + subChunkSize, chunk.length);
+            subChunks.push(chunk.slice(start, end));
+            start = end;
+        }
+
+        return subChunks;
+    });
+}
 
 
 // split by whitespace and punctuation.

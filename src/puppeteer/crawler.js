@@ -4,7 +4,7 @@
 // puppeteer.use(StealthPlugin())
 
 import puppeteer from 'puppeteer';
-import { sliceHtmlToFitRequestLimit, sliceHtmlToFitTokenLimit } from './utils/puppeteerHelpers.js';
+import { chunkContent, sliceHtmlToFitRequestLimit, sliceHtmlToFitTokenLimit, subChunkContent } from './utils/puppeteerHelpers.js';
 import { configDotenv } from 'dotenv';
 // const fs = require('fs');
 import * as fs from 'fs';
@@ -35,7 +35,10 @@ export const scrapeReviews = async (url) => {
   content = sliceHtmlToFitRequestLimit(content, requestLimit);
 
   //  Chunk data to fit the context window
-  
+  let chunks = chunkContent(content, contextWindow);
+
+  // sub chunk
+  let subChunks = subChunkContent(chunks, tpm);
 
   // slice the body's initial content to reduce the number of tokens
   // content = sliceHtmlToFitTokenLimit(content, tokenLimit);
