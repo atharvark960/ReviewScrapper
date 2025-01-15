@@ -4,7 +4,7 @@
 // puppeteer.use(StealthPlugin())
 
 import puppeteer from 'puppeteer';
-import { chunkContent, sliceHtmlToFitRequestLimit, sliceHtmlToFitTokenLimit, subChunkContent } from './utils/puppeteerHelpers.js';
+// import { chunkContent, sliceHtmlToFitRequestLimit, sliceHtmlToFitTokenLimit, subChunkContent } from './utils/puppeteerHelpers.js';
 import { configDotenv } from 'dotenv';
 // const fs = require('fs');
 import * as fs from 'fs';
